@@ -326,6 +326,73 @@
     color: var(--muted);
   }
 
+  /* ── Color ratio bar ── */
+  .ratio-bar {
+    display: flex;
+    height: 32px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .ratio-bar .seg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .ratio-legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .ratio-legend .item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .ratio-legend .item .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── Principles ── */
+  .principles {
+    display: grid;
+    gap: 1px;
+  }
+  .principle {
+    background: var(--surface);
+    padding: clamp(20px, 2.5vw, 28px);
+    border-radius: 10px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .principle .icon {
+    font-size: 20px;
+    min-width: 28px;
+    text-align: center;
+    line-height: 1;
+  }
+  .principle h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .principle p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
   /* ── Final statement ── */
   .finale {
     text-align: right;
@@ -368,7 +435,7 @@
     <div><strong>81</strong><span>kg</span></div>
     <div><strong>冷感</strong><span>face</span></div>
   </div>
-  <p>Urban cold &times; clean fit &times; micro HK style.<br>A system for someone who dresses with intention.</p>
+  <p>Urban cold &times; clean fit &times; micro HK style.<br>最少单品，最大化 look。<br><br><span style="color:var(--faint);font-size:0.85em">都市冷感 &middot; clean fit &middot; 轻熟 &middot; 微港风 &middot; 低饱和 &middot; 有质感但不装</span></p>
 </header>
 
 <section class="section">
@@ -400,38 +467,40 @@
 
 <section class="section">
   <div class="section-label">胶囊衣柜</div>
-  <h2>P0 必备单品，含版型说明。</h2>
+  <h2>上装 7 件 + 下装 5 件 + 鞋子 4 双 + 配饰 4 件。</h2>
 
   <div class="capsule-grid" id="capsule">
     <div class="cat">
-      <h3>上装 <span class="count" id="count-tops"></span></h3>
-      <label class="capsule-item"><input type="checkbox" data-key="top-black-tee-1"><span class="item-text">黑色重磅圆领T<span class="note">微落肩 / 微宽松 / 硬领口 &times;3</span></span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="top-cream-tee"><span class="item-text">奶白重磅圆领T<span class="note">直筒感 / 不贴身 &times;2</span></span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="top-black-cuban"><span class="item-text">黑色古巴领衬衫<span class="note">垂感 / 微松弛 &times;2</span></span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="top-coffee-shirt"><span class="item-text">深咖垂感衬衫<span class="note">宽松直筒 &times;1</span></span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="top-black-polo"><span class="item-text">黑色Polo<span class="note">轻宽松 / 不修身 &times;1</span></span></label>
+      <h3>上装 &mdash; 7 件 <span class="count" id="count-tops"></span></h3>
+      <label class="capsule-item"><input type="checkbox" data-key="top-black-tee"><span class="item-text">黑色重磅圆领T<span class="note">微落肩 / 微宽松 / 硬挺领口 &mdash; 最核心单品，放大肩线，压气场</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="top-cream-tee"><span class="item-text">奶白重磅圆领T<span class="note">比纯白更适合你 &mdash; 你不适合"太干净的白"</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="top-grey-vest"><span class="item-text">深灰针织背心<span class="note">增加层次感 &mdash; 夜晚 / 夏季氛围感 / 港风轻熟</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="top-black-cuban"><span class="item-text">黑色古巴领短袖衬衫<span class="note">拉开肩颈 / 松弛感 / 不油腻 &mdash; 从"普通男生"进入"有风格"的关键</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="top-coffee-shirt"><span class="item-text">深咖垂感衬衫<span class="note">冷感大地色，不适合暖棕 &mdash; 很有质感</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="top-black-polo"><span class="item-text">黑色Polo<span class="note">微宽松 / 微垂感 / 不修身 &mdash; 轻熟感，不是商务Polo</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="top-linen-jacket"><span class="item-text">亚麻混纺轻外套<span class="note">深灰 / 炭灰 / 深咖 / 夏季薄款 &mdash; 拉层次拉氛围，你非常适合轻外套</span></span></label>
     </div>
     <div class="cat">
-      <h3>裤子 <span class="count" id="count-bottoms"></span></h3>
-      <label class="capsule-item"><input type="checkbox" data-key="bot-black-slacks"><span class="item-text">黑色垂感西裤<span class="note">微锥 / 盖鞋面 &times;2</span></span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="bot-charcoal-straight"><span class="item-text">炭灰直筒裤<span class="note">垂感直落 &times;1</span></span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="bot-olive-cargo"><span class="item-text">军绿微工装<span class="note">低存在感口袋 &times;1</span></span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="bot-navy-jeans"><span class="item-text">深蓝直筒牛仔<span class="note">&times;1</span></span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="bot-shorts"><span class="item-text">宽松西短裤<span class="note">膝盖上方 &times;1</span></span></label>
+      <h3>下装 &mdash; 5 件 <span class="count" id="count-bottoms"></span></h3>
+      <label class="capsule-item"><input type="checkbox" data-key="bot-black-slacks"><span class="item-text">黑色垂感西裤<span class="note">微锥 / 微宽松 / 盖鞋面 &mdash; 最重要的裤子，不要九分紧腿</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="bot-charcoal-straight"><span class="item-text">炭灰直筒裤<span class="note">替代黑裤避免单调，垂感直落</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="bot-navy-jeans"><span class="item-text">深蓝直筒牛仔裤<span class="note">不要破坏 / 不要水洗太重 &mdash; 你不适合"潮男牛仔裤"</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="bot-olive-cargo"><span class="item-text">军绿微工装裤<span class="note">口袋低存在感 / 不要机能风过头 &mdash; 增加男性感</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="bot-black-shorts"><span class="item-text">黑色西装短裤<span class="note">膝盖上方一点 &mdash; 不要太短、不要篮球裤感</span></span></label>
     </div>
     <div class="cat">
-      <h3>鞋子 <span class="count" id="count-shoes"></span></h3>
-      <label class="capsule-item"><input type="checkbox" data-key="shoe-german-trainer"><span class="item-text">德训鞋<span class="note">&times;1</span></span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="shoe-black-low"><span class="item-text">低帮黑鞋<span class="note">&times;1</span></span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="shoe-loafers"><span class="item-text">黑色乐福鞋<span class="note">&times;1</span></span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="shoe-sandals"><span class="item-text">皮质凉鞋<span class="note">&times;1</span></span></label>
+      <h3>鞋子 &mdash; 4 双 <span class="count" id="count-shoes"></span></h3>
+      <label class="capsule-item"><input type="checkbox" data-key="shoe-german-trainer"><span class="item-text">德训鞋<span class="note">你最适合的鞋，比 AJ / 老爹鞋更适合</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="shoe-black-low"><span class="item-text">黑色低帮皮鞋<span class="note">提升完成度</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="shoe-loafers"><span class="item-text">黑色乐福鞋<span class="note">轻正式 / 高级感</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="shoe-sandals"><span class="item-text">极简黑色凉鞋<span class="note">夏天非常重要 &mdash; 你适合极简感</span></span></label>
     </div>
     <div class="cat">
-      <h3>配饰 <span class="count" id="count-acc"></span></h3>
-      <label class="capsule-item"><input type="checkbox" data-key="acc-sunglasses"><span class="item-text">窄矩形墨镜</span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="acc-watch"><span class="item-text">金属腕表</span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="acc-earring"><span class="item-text">小银耳钉</span></label>
-      <label class="capsule-item"><input type="checkbox" data-key="acc-tote"><span class="item-text">深色托特包</span></label>
+      <h3>配饰 &mdash; 4 件 <span class="count" id="count-acc"></span></h3>
+      <label class="capsule-item"><input type="checkbox" data-key="acc-sunglasses"><span class="item-text">窄框墨镜<span class="note">风格完成度核心 &mdash; 茶色镜片 / 灰黑镜片</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="acc-watch"><span class="item-text">金属腕表<span class="note">不要大表盘 / 不要运动表</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="acc-earring"><span class="item-text">小银耳钉<span class="note">低存在感即可</span></span></label>
+      <label class="capsule-item"><input type="checkbox" data-key="acc-tote"><span class="item-text">深色托特包<span class="note">不要潮牌logo / 不要花哨</span></span></label>
     </div>
   </div>
 
@@ -469,6 +538,55 @@
   </div>
 </section>
 
+<!-- ═══ COLOR RATIO ═══ -->
+<section class="section">
+  <div class="section-label">色彩比例</div>
+  <h2>你最适合的色彩分配。</h2>
+
+  <div class="ratio-bar">
+    <div class="seg" style="flex:40;background:oklch(0.22 0.01 260);color:#fff;">40%</div>
+    <div class="seg" style="flex:30;background:oklch(0.33 0.04 95);color:#fff;">30%</div>
+    <div class="seg" style="flex:20;background:oklch(0.84 0.03 82);color:oklch(0.25 0.005 250);">20%</div>
+    <div class="seg" style="flex:10;background:oklch(0.50 0.02 200);color:#fff;">10%</div>
+  </div>
+  <div class="ratio-legend">
+    <div class="item"><span class="dot" style="background:oklch(0.22 0.01 260)"></span>40% 黑灰</div>
+    <div class="item"><span class="dot" style="background:oklch(0.33 0.04 95)"></span>30% 深咖 / 军绿</div>
+    <div class="item"><span class="dot" style="background:oklch(0.84 0.03 82)"></span>20% 奶白</div>
+    <div class="item"><span class="dot" style="background:oklch(0.50 0.02 200)"></span>10% 其它低饱和色</div>
+  </div>
+</section>
+
+<!-- ═══ DRESSING LOGIC ═══ -->
+<section class="section">
+  <div class="section-label">穿搭逻辑</div>
+  <h2>不是"很多衣服"，是"统一"。</h2>
+
+  <div class="principles">
+    <div class="principle">
+      <span class="icon" style="color:var(--accent)">01</span>
+      <div>
+        <h4>统一 &gt; 数量</h4>
+        <p>真正高级的人，衣柜颜色不会很多，但完成度会很高。</p>
+      </div>
+    </div>
+    <div class="principle">
+      <span class="icon" style="color:var(--accent)">02</span>
+      <div>
+        <h4>低饱和冷感大地色</h4>
+        <p>你所有颜色的共同点：冷、低饱和、有重量感。不跳、不飘、不甜。</p>
+      </div>
+    </div>
+    <div class="principle">
+      <span class="icon" style="color:var(--accent)">03</span>
+      <div>
+        <h4>版型决定一切</h4>
+        <p>微宽松 &middot; 垂感 &middot; 长线条。同样的黑色T恤，版型对和不对是两个人。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="section-label">视觉方向</div>
   <h2>你想成为的氛围。</h2>
@@ -490,36 +608,43 @@
 </section>
 
 <section class="section">
-  <div class="section-label">进阶路线</div>
-  <h2>下一步升级方向。</h2>
+  <div class="section-label">最值得投资的</div>
+  <h2>不是潮牌。是这些。</h2>
 
   <div class="road">
     <div class="step">
-      <span class="tag">P1</span>
+      <span class="tag">01</span>
       <div>
-        <h3>面料升级</h3>
-        <p>增加亚麻混纺、冰川棉、垂感西装面料。质感优于新鲜感。</p>
+        <h3>面料</h3>
+        <p>亚麻混纺、冰川棉、垂感西装面料。质感先行。</p>
       </div>
     </div>
     <div class="step">
-      <span class="tag">P2</span>
+      <span class="tag">02</span>
       <div>
-        <h3>版型固定</h3>
-        <p>微宽松、长线条、垂感版型。一旦版型对了，一致性比实验更重要。</p>
+        <h3>版型</h3>
+        <p>微宽松、长线条、垂感。版型对，普通单品也高级。</p>
       </div>
     </div>
     <div class="step">
-      <span class="tag">P3</span>
+      <span class="tag">03</span>
       <div>
-        <h3>鞋履系统</h3>
-        <p>麂皮德训鞋、黑乐福鞋。小而精准的轮换。</p>
+        <h3>鞋子</h3>
+        <p>德训鞋 / 乐福鞋 / 低帮皮鞋。鞋是完成度的下限。</p>
       </div>
     </div>
     <div class="step">
-      <span class="tag">P4</span>
+      <span class="tag">04</span>
       <div>
-        <h3>香味系统</h3>
-        <p>木质、海盐、白麝香。气味是最后一件衣服。</p>
+        <h3>发型</h3>
+        <p>比任何单品都重要。找一个好理发师，不要省。</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="tag">05</span>
+      <div>
+        <h3>体脂 + 状态</h3>
+        <p>合身的前提是对的身材。好的状态是最好的衣服。</p>
       </div>
     </div>
   </div>
