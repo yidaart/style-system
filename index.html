@@ -11,12 +11,12 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --bg:       oklch(0.148 0.012 240);
-    --surface:  oklch(0.19 0.01 235);
-    --text:     oklch(0.92 0.003 240);
-    --muted:    oklch(0.64 0.015 225);
-    --faint:    oklch(0.40 0.012 230);
-    --accent:   oklch(0.52 0.065 158);
+    --bg:       oklch(0.945 0.015 85);
+    --surface:  oklch(0.90 0.02 82);
+    --text:     oklch(0.22 0.01 250);
+    --muted:    oklch(0.38 0.02 240);
+    --faint:    oklch(0.55 0.015 240);
+    --accent:   oklch(0.42 0.06 155);
     --black-c:  oklch(0.186 0.015 265);
     --charcoal: oklch(0.28 0.01 260);
     --coffee:   oklch(0.33 0.04 62);
@@ -127,9 +127,9 @@
     border-radius: 10px;
     font-size: 14px;
   }
-  .earth-note .suitable  { background: oklch(0.22 0.03 155 / 0.18); }
-  .earth-note .avoid     { background: oklch(0.22 0.012 15 / 0.12); }
-  .earth-note .verdict   { background: oklch(0.22 0.008 235); }
+  .earth-note .suitable  { background: oklch(0.55 0.06 155 / 0.18); }
+  .earth-note .avoid     { background: oklch(0.55 0.08 20 / 0.10); }
+  .earth-note .verdict   { background: var(--surface); }
 
   /* ── Capsule wardrobe with checkboxes ── */
   .capsule-grid {
@@ -447,7 +447,7 @@
     <div class="swatch" style="background: var(--charcoal); color: #fff;">炭灰</div>
     <div class="swatch" style="background: var(--coffee); color: #fff;">深咖</div>
     <div class="swatch" style="background: var(--olive); color: #fff;">军绿</div>
-    <div class="swatch" style="background: var(--cream); color: oklch(0.25 0.008 230);">奶白</div>
+    <div class="swatch" style="background: var(--cream); color: oklch(0.28 0.01 250);">奶白</div>
   </div>
 
   <div class="earth-note">
@@ -456,7 +456,7 @@
       深咖 &middot; 灰棕 &middot; 冷卡其 &middot; 军绿
     </div>
     <div class="avoid">
-      <strong style="color:oklch(0.56 0.12 20)">避免</strong><br>
+      <strong style="color:oklch(0.42 0.14 20)">避免</strong><br>
       姜黄 &middot; 暖驼 &middot; 亮卡其
     </div>
     <div class="verdict">
