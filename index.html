@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Style System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       oklch(0.126 0.009 252);
+    --surface:  oklch(0.167 0.007 252);
+    --elevated: oklch(0.195 0.006 250);
+    --text:     oklch(0.91 0.002 252);
+    --muted:    oklch(0.68 0.005 252);
+    --faint:    oklch(0.42 0.005 252);
+    --accent:   oklch(0.58 0.095 65);
+    --black-c:  oklch(0.186 0.015 265);
+    --charcoal: oklch(0.28 0.01 260);
+    --coffee:   oklch(0.33 0.04 62);
+    --olive:    oklch(0.38 0.04 130);
+    --cream:    oklch(0.86 0.03 82);
+  }
+
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: clamp(32px, 6vw, 80px) clamp(20px, 5vw, 64px);
+  }
+
+  /* ── Hero ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: clamp(24px, 4vw, 48px);
+    align-items: end;
+    margin-bottom: clamp(60px, 10vw, 120px);
+    padding-bottom: clamp(40px, 6vw, 72px);
+    border-bottom: 1px solid var(--faint);
+  }
+  .hero h1 {
+    font-size: clamp(42px, 8vw, 80px);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--text);
+  }
+  .hero .stats {
+    display: flex;
+    gap: clamp(20px, 3vw, 40px);
+    font-size: clamp(13px, 1.5vw, 15px);
+    color: var(--muted);
+    text-align: right;
+  }
+  .hero .stats span { display: block; }
+  .hero .stats strong {
+    display: block;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .hero p {
+    grid-column: 1 / -1;
+    font-size: clamp(15px, 2vw, 18px);
+    color: var(--muted);
+    max-width: 48ch;
+  }
+
+  /* ── Section headers ── */
+  .section { margin-bottom: clamp(60px, 8vw, 100px); }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .section h2 {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: clamp(24px, 3vw, 40px);
+    color: var(--text);
+  }
+
+  /* ── Palette ── */
+  .palette-strip {
+    display: flex;
+    gap: 1px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .palette-strip .swatch {
+    flex: 1;
+    min-height: clamp(80px, 12vw, 140px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .earth-note {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .earth-note > div {
+    padding: clamp(16px, 2vw, 24px);
+    border-radius: 10px;
+    font-size: 14px;
+  }
+  .earth-note .suitable  { background: oklch(0.22 0.025 62 / 0.18); }
+  .earth-note .avoid     { background: oklch(0.22 0.015 15 / 0.15); }
+  .earth-note .verdict   { background: oklch(0.22 0.005 250); }
+
+  /* ── Capsule grid ── */
+  .capsule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    margin-bottom: 32px;
+  }
+  .capsule-grid .cat {
+    background: var(--surface);
+    padding: clamp(20px, 3vw, 28px);
+    border-radius: 10px;
+  }
+  .capsule-grid .cat h3 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .capsule-grid .cat li {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    padding: 0;
+    list-style: none;
+    line-height: 1.5;
+  }
+  .capsule-grid .cat li span {
+    display: block;
+    font-size: 12px;
+    color: var(--faint);
+    margin-top: 2px;
+  }
+
+  .fit-note {
+    background: none;
+    border: 1px solid var(--faint);
+    border-radius: 10px;
+    padding: clamp(16px, 2vw, 24px);
+    font-size: 14px;
+  }
+  .fit-note h3 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .fit-note li { color: var(--muted); margin-bottom: 6px; }
+  .fit-note li:last-child { margin-bottom: 0; }
+
+  /* ── Looks ── */
+  .looks-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+  }
+  .look {
+    background: var(--surface);
+    padding: clamp(16px, 2.5vw, 24px);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .look .num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 24px;
+    line-height: 1;
+    margin-top: 2px;
+    font-feature-settings: "tnum";
+  }
+  .look .desc h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+  .look .desc p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── Visual direction ── */
+  .image-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .image-strip .frame {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    position: relative;
+  }
+  .image-strip .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .image-strip .frame .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, oklch(0 0 0 / 0.5) 0%, transparent 50%);
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    font-size: 12px;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── Next steps ── */
+  .road {
+    display: grid;
+    gap: 0;
+  }
+  .road .step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: clamp(12px, 2vw, 20px);
+    padding: clamp(16px, 2vw, 24px) 0;
+    border-bottom: 1px solid var(--faint);
+    align-items: start;
+  }
+  .road .step:last-child { border-bottom: none; }
+  .road .step .tag {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+  .road .step h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+  .road .step p {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* ── Final statement ── */
+  .finale {
+    text-align: right;
+    padding-top: clamp(40px, 6vw, 64px);
+    border-top: 1px solid var(--faint);
+  }
+  .finale p {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .finale p strong {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .finale .signoff {
+    margin-top: 24px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  @media (max-width: 600px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero .stats { text-align: left; }
+    .image-strip { grid-template-columns: 1fr; }
+    .capsule-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <h1>Summer<br>Capsule</h1>
+  <div class="stats">
+    <div><strong>180</strong><span>cm</span></div>
+    <div><strong>81</strong><span>kg</span></div>
+    <div><strong>冷感</strong><span>face</span></div>
+  </div>
+  <p>Urban cold &times; clean fit &times; micro HK style.<br>A system for someone who dresses with intention.</p>
+</header>
+
+<!-- ═══ COLOR PALETTE ═══ -->
+<section class="section">
+  <div class="section-label">Core Palette</div>
+  <h2>Five colors. Infinite combinations.</h2>
+
+  <div class="palette-strip">
+    <div class="swatch" style="background: var(--black-c); color: #fff;">Black</div>
+    <div class="swatch" style="background: var(--charcoal); color: #fff;">Charcoal</div>
+    <div class="swatch" style="background: var(--coffee); color: #fff;">Coffee</div>
+    <div class="swatch" style="background: var(--olive); color: #fff;">Olive</div>
+    <div class="swatch" style="background: var(--cream); color: oklch(0.2 0.005 250);">Cream</div>
+  </div>
+
+  <div class="earth-note">
+    <div class="suitable">
+      <strong style="color:var(--accent)">适合</strong><br>
+      深咖 &middot; 灰棕 &middot; 冷卡其 &middot; 军绿
+    </div>
+    <div class="avoid">
+      <strong style="color:oklch(0.6 0.1 30)">避免</strong><br>
+      姜黄 &middot; 暖驼 &middot; 亮卡其
+    </div>
+    <div class="verdict">
+      低饱和冷感大地色是你的核心语言。
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CAPSULE WARDROBE ═══ -->
+<section class="section">
+  <div class="section-label">Capsule Wardrobe</div>
+  <h2>P0 essentials, with fit notes.</h2>
+
+  <div class="capsule-grid">
+    <div class="cat">
+      <h3>上装 &mdash; Tops</h3>
+      <ul>
+        <li>黑色重磅圆领T<span>微落肩 / 微宽松 / 硬领口 &times;3</span></li>
+        <li>奶白重磅圆领T<span>直筒感 / 不贴身 &times;2</span></li>
+        <li>黑色古巴领衬衫<span>垂感 / 微松弛 &times;2</span></li>
+        <li>深咖垂感衬衫<span>宽松直筒 &times;1</span></li>
+        <li>黑色Polo<span>轻宽松 / 不修身 &times;1</span></li>
+      </ul>
+    </div>
+    <div class="cat">
+      <h3>裤子 &mdash; Bottoms</h3>
+      <ul>
+        <li>黑色垂感西裤<span>微锥 / 盖鞋面 &times;2</span></li>
+        <li>炭灰直筒裤<span>垂感直落 &times;1</span></li>
+        <li>军绿微工装<span>低存在感口袋 &times;1</span></li>
+        <li>深蓝直筒牛仔<span>&times;1</span></li>
+        <li>宽松西短裤<span>膝盖上方 &times;1</span></li>
+      </ul>
+    </div>
+    <div class="cat">
+      <h3>鞋子 &mdash; Shoes</h3>
+      <ul>
+        <li>德训鞋 &times;1</li>
+        <li>低帮黑鞋 &times;1</li>
+        <li>黑色乐福鞋 &times;1</li>
+        <li>皮质凉鞋 &times;1</li>
+      </ul>
+    </div>
+    <div class="cat">
+      <h3>配饰 &mdash; Accessories</h3>
+      <ul>
+        <li>窄矩形墨镜</li>
+        <li>金属腕表</li>
+        <li>小银耳钉</li>
+        <li>深色托特包</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="fit-note">
+    <h3>Collar guide</h3>
+    <ul>
+      <li>圆领 &gt; V领</li>
+      <li>古巴领非常适合你</li>
+      <li>不要深V &middot; 不要oversize大领口</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ 16 LOOKS ═══ -->
+<section class="section">
+  <div class="section-label">Summer Looks</div>
+  <h2>16 combinations. One system.</h2>
+
+  <div class="looks-list">
+    <div class="look"><span class="num">01</span><div class="desc"><h4>都市冷感</h4><p>黑色T + 黑西裤 + 德训鞋 + 墨镜</p></div></div>
+    <div class="look"><span class="num">02</span><div class="desc"><h4>轻熟港风</h4><p>深咖衬衫 + 炭灰西裤 + 金属表</p></div></div>
+    <div class="look"><span class="num">03</span><div class="desc"><h4>夜晚氛围感</h4><p>全黑穿搭 + 微湿发 + 墨镜</p></div></div>
+    <div class="look"><span class="num">04</span><div class="desc"><h4>夏季 clean fit</h4><p>奶白T + 军绿裤 + 德训鞋</p></div></div>
+    <div class="look"><span class="num">05</span><div class="desc"><h4>都市咖色系</h4><p>深咖衬衫 + 黑西裤 + 黑皮鞋</p></div></div>
+    <div class="look"><span class="num">06</span><div class="desc"><h4>高级灰系</h4><p>炭灰T + 黑西裤</p></div></div>
+    <div class="look"><span class="num">07</span><div class="desc"><h4>冷淡日系</h4><p>奶白背心 + 深灰裤</p></div></div>
+    <div class="look"><span class="num">08</span><div class="desc"><h4>城市机能感</h4><p>黑衬衫 + 军绿工装裤</p></div></div>
+    <div class="look"><span class="num">09</span><div class="desc"><h4>轻正式约会</h4><p>深灰衬衫 + 黑西裤</p></div></div>
+    <div class="look"><span class="num">10</span><div class="desc"><h4>夏夜港风</h4><p>黑背心 + 宽松西裤</p></div></div>
+    <div class="look"><span class="num">11</span><div class="desc"><h4>低饱和层次</h4><p>灰棕衬衫 + 深蓝牛仔</p></div></div>
+    <div class="look"><span class="num">12</span><div class="desc"><h4>高级感通勤</h4><p>黑Polo + 炭灰裤</p></div></div>
+    <div class="look"><span class="num">13</span><div class="desc"><h4>城市周末</h4><p>奶白T + 深蓝牛仔 + 托特包</p></div></div>
+    <div class="look"><span class="num">14</span><div class="desc"><h4>成熟冷感</h4><p>深咖针织 + 黑裤</p></div></div>
+    <div class="look"><span class="num">15</span><div class="desc"><h4>夜晚极简感</h4><p>全黑穿搭 + 窄框墨镜</p></div></div>
+    <div class="look"><span class="num">16</span><div class="desc"><h4>夏季高级松弛</h4><p>奶白衬衫 + 黑宽松西裤</p></div></div>
+  </div>
+</section>
+
+<!-- ═══ VISUAL DIRECTION ═══ -->
+<section class="section">
+  <div class="section-label">Visual Direction</div>
+  <h2>The mood you're building toward.</h2>
+
+  <div class="image-strip">
+    <div class="frame">
+      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80" alt="Urban cold mood: dark tones, strong silhouette, ambient city lighting" loading="lazy">
+      <div class="overlay">Urban cold &middot; Silhouette</div>
+    </div>
+    <div class="frame">
+      <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80" alt="Clean fit aesthetic: low saturation, refined casual, evening light" loading="lazy">
+      <div class="overlay">Clean fit &middot; Desaturated</div>
+    </div>
+    <div class="frame">
+      <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" alt="HK summer night mood: sunglasses, evening atmosphere, city glow" loading="lazy">
+      <div class="overlay">Summer nights &middot; HK mood</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NEXT STEPS ═══ -->
+<section class="section">
+  <div class="section-label">Progression</div>
+  <h2>What comes next.</h2>
+
+  <div class="road">
+    <div class="step">
+      <span class="tag">P1</span>
+      <div>
+        <h3>Fabric upgrade</h3>
+        <p>Linen blends, glacier cotton, fluid suiting fabrics. Texture over novelty.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="tag">P2</span>
+      <div>
+        <h3>Silhouette lock-in</h3>
+        <p>Slightly relaxed, long-line, draped. Consistency beats experimentation once the shape works.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="tag">P3</span>
+      <div>
+        <h3>Shoe system</h3>
+        <p>Suede German trainers, black loafers. A small, deliberate rotation.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="tag">P4</span>
+      <div>
+        <h3>Scent system</h3>
+        <p>Wood, sea salt, white musk. Olfactory signature as the final layer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINALE ═══ -->
+<footer class="finale">
+  <p>From <strong>"someone who dresses well"</strong><br>to <strong>"someone with a personal style."</strong></p>
+  <div class="signoff">Personal Style System &middot; Urban Cold Clean Fit</div>
+</footer>
+
+</body>
+</html>
